@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no">
+<meta name="theme-color" content="#0b0d10">
+<title>NikonLink</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="app">
+ <header>
+  <span class="logo">NIKONLINK</span>
+  <span class="pill bad" id="conn">Sin cámara</span>
+  <span class="pill" id="bat" hidden></span>
+  <span class="pill" id="free" hidden></span>
+  <span class="pill" id="fps">0 fps</span>
+  <span class="sp"></span>
+  <button class="btn primary" id="btnConnect">Conectar cámara</button>
+  <button class="btn" id="btnRed" title="Modo rojo (visión nocturna)">ROJO</button>
+  <button class="btn" id="btnFs">⛶</button>
+ </header>
+ <div class="banner" id="compat" hidden></div>
+
+ <div class="main">
+  <section class="left">
+   <div class="lv">
+    <canvas id="lv" width="960" height="640"></canvas>
+    <div class="grid" id="grid"></div>
+    <canvas id="hist" width="140" height="56"></canvas>
+    <div class="badge" id="lvBadge">LV apagado</div>
+    <div class="noimg" id="noimg"><div>
+     <b>Cómo empezar</b>
+     <ol>
+      <li>Cámara en modo <b>M</b>, objetivo en <b>MF</b> si vas a hacer astro.</li>
+      <li>Conéctala por <b>USB</b> a este dispositivo y enciéndela.</li>
+      <li>Pulsa <b>Conectar cámara</b> y elige la Nikon.</li>
+      <li>Activa <b>Live View</b>.</li>
+     </ol>
+    </div></div>
+   </div>
+
+   <div class="bar">
+    <button class="btn" id="btnLv" disabled>Live View</button>
+    <button class="btn" id="btnAf" disabled>AF</button>
+    <button class="btn" id="mfM" disabled title="Foco manual hacia cerca">MF −</button>
+    <button class="btn" id="mfP" disabled title="Foco manual hacia infinito">MF +</button>
+    <button class="shoot" id="btnShoot" aria-label="Disparar"></button>
+   </div>
+
+   <div class="dials" id="dials"></div>
+  </section>
+
+  <aside class="right">
+   <nav class="tabs">
+    <button class="tab on" data-p="p-cam">Cámara</button>
+    <button class="tab" data-p="p-bulk">Bulk</button>
+    <button class="tab" data-p="p-sky">Sky Stack</button>
+    <button class="tab" data-p="p-log">Diagnóstico</button>
+   </nav>
+
+   <div class="pane on" id="p-cam">
+    <h3>EXPOSICIÓN</h3>
+    <div class="row">
+     <label class="f">Balance de blancos<select id="wb"></select></label>
+     <label class="f">Paso de foco manual<select id="mfStep"><option value="1">Fino</option><option value="2" selected>Medio</option><option value="3">Grueso</option></select></label>
+    </div>
+    <h3>VISOR</h3>
+    <label class="chk"><input type="checkbox" id="ckGrid"> Cuadrícula de tercios</label>
+    <label class="chk"><input type="checkbox" id="ckHist"> Histograma</label>
+    <label class="chk"><input type="checkbox" id="ckWake" checked> Mantener pantalla encendida</label>
+    <div class="box" id="camInfo">Sin datos de cámara.</div>
+   </div>
+
+   <div class="pane" id="p-bulk">
+    <div class="box soon">Bulk Capture (intervalómetro, Holy Grail) llegará en la <b>fase B</b>. Esta versión solo comprueba que la conexión con tu cámara funciona.</div>
+   </div>
+   <div class="pane" id="p-sky">
+    <div class="box soon">Sky Stack (apilado de estrellas, Ground Lock) llegará en la <b>fase C</b>.</div>
+   </div>
+
+   <div class="pane" id="p-log">
+    <h3>INFORME</h3>
+    <div class="btnrow">
+     <button class="btn small" id="btnCopy">Copiar informe</button>
+     <button class="btn small" id="btnSave">Descargar .txt</button>
+    </div>
+    <div class="box" style="font-size:12px">Si algo no funciona, pulsa <b>Copiar informe</b> y pégalo tal cual: incluye modelo, operaciones soportadas y el resultado de cada paso de la conexión.</div>
+    <h3>REGISTRO</h3>
+    <div id="log"></div>
+   </div>
+  </aside>
+ </div>
+</div>
+<div id="toast" role="status"></div>
+<script type="module" src="js/app.js"></script>
+</body>
+</html>

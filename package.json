@@ -1,0 +1,11 @@
+{
+  "name": "nikonlink-web",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "NikonLink: control remoto de cámaras Nikon por USB desde el navegador (WebUSB)",
+  "scripts": {
+    "test": "node test/ptp.test.mjs",
+    "start": "python3 -m http.server 8000"
+  }
+}
